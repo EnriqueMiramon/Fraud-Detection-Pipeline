@@ -1,1 +1,1 @@
-# detecci-n-
+# deteccion
