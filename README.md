@@ -33,6 +33,29 @@ También puedes acceder a los datos directamente desde mi **Google Drive** en el
 
 ## Resultados
 
-El modelo ha sido entrenado y evaluado utilizando diversas métricas, con un enfoque principal en maximizar el recall. Si bien el accuracy no se dejó de lado, el enfoque en la detección de fraudes se traduce en un modelo que prioriza los casos donde el fraude es más probable, y minimiza los falsos negativos.
+El mejor modelo es el pipeline_final_xgb.joblib, ha sido entrenado y evaluado utilizando diversas métricas, con un enfoque principal en maximizar el recall. Si bien el accuracy no se dejó de lado, el enfoque en la detección de fraudes se traduce en un modelo que prioriza los casos donde el fraude es más probable, y minimiza los falsos negativos.
 
+## Uso del pipeline
+
+Para poder hacer uso del pipeline final y realizar predicciones correctamente, se deben seguir los siguientes pasos:
+
+```python
+
+# 1.- Importar las clases y funciones personalizadas
+from custom_pipeline import DropColumns, ThresholdClassifier
+from joblib import load
+import pandas as pd
+
+# 2.- Cargar el pipeline final entrenado
+pipeline_final_xgb = load('pipeline_final_xgb.joblib')
+
+# 3.- Cargar los nuevos datos a predecir
+# Nota: El DataFrame debe tener la misma estructura y nombres de columnas que los archivos utilizados durante el entrenamiento (train.csv)
+nuevos_datos = pd.read_csv('nuevos_datos.csv')
+
+# 4.- Realizar las predicciones
+predicciones = pipeline_final_xgb.predict(nuevos_datos)
+
+# 5.-  Mostrar los resultados
+print(predicciones)
 
