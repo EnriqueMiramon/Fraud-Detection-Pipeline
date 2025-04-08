@@ -42,7 +42,7 @@ Para poder hacer uso del pipeline final y realizar predicciones correctamente, s
 ```python
 
 # 1.- Importar las clases y funciones personalizadas
-from custom_pipeline import DropColumns, ThresholdClassifier
+from custom_pipeline import DropColumns, ThresholdClassifier, log_transform, inverse_log_transform, sqrt_transform
 from joblib import load
 import pandas as pd
 
@@ -58,4 +58,9 @@ predicciones = pipeline_final_xgb.predict(nuevos_datos)
 
 # 5.-  Mostrar los resultados
 print(predicciones)
+```
+## Prueba de funcionamiento del pipeline
 
+Realicé una prueba de predicción sobre un subconjunto de datos llamado `new_data` (200 registros) con el objetivo de validar que el pipeline final (`pipeline_final_xgb`) funciona correctamente en producción.
+
+El pipeline aplica automáticamente todas las transformaciones definidas en las clases personalizadas y devuelve las predicciones finales.
